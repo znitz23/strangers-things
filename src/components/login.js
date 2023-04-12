@@ -1,23 +1,29 @@
 import React, { useState, useNavigate } from "react";
+import { authenticate } from "../api/authentication";
 
 
 const LogIn = ({user, setUser, isLoggedIn, setIsLoggedIn, token, setToken, }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    // const navigate = useNavigate()
+     //const navigate = useNavigate()
     
-    // const handleSubit = async (event) => {
-    //     event.preventDefault();
-    //     const authUser = // run a function that checks for valid log in credentials and returns a token
-    //     //setToken()
-    //     setUsername('');
-    //     setPassword('');
-    //     navigate('/profile');
-    // }
+    const handleSubmit = async (username, password) => {
+        //event.preventDefault();
+    console.log(username, password)
+      const data = await authenticate(username, password); 
+      console.log(data);
+        //setToken(authenticate);
+         setUsername('');
+         setPassword('');
+         //navigate('/profile');
+     }
     
     return (
     <>
-        <form>
+        <form onSubmit={ (event) => {  
+            event.preventDefault();
+            handleSubmit(username, password)}}>
+            
             <input 
                 placeholder="Username" 
                 value={username} 

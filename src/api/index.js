@@ -1,6 +1,28 @@
 const cohortName = '2303-FTB-ET-WEB-FT'
 const APIURL = `https://strangers-things.herokuapp.com/api${cohortName}/`;
 
+const registerUser = async (newUsername, newPassword) => {
+  try {
+    const response = await fetch(
+      `${APIURL}/users/register`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user: {
+          username: {newUsername},
+          password: {newPassword}
+        } 
+      } ) 
+    });
+    const {success, error, data: {token, message}} = await response.json();
+    console.log(success)
+    return;
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 const fetchPosts = async () => {
     try {
