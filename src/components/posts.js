@@ -2,7 +2,7 @@ import React from "react";
 
 const Posts = () => {
 return (
-    <div>Hello from Posts page</div>
+    <div>Hello from Postssdkljfhlsdkfjh page</div>
 )
 }
 
