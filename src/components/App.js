@@ -13,7 +13,7 @@ return (
     <>
         <Header />
         <Navbar />
-        <Routes>
+        <Routes >
             <Route path='/' element={
                 <Welcome 
                 user={user}

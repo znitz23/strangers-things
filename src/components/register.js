@@ -21,7 +21,7 @@ const Register = () => {
 
 return (
     <>
-    <div>Please Register</div>
+    <div id='mainContainer'>Please Register</div>
 
         <form submit={handleSubmit} >
             

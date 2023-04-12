@@ -19,7 +19,7 @@ const LogIn = ({user, setUser, isLoggedIn, setIsLoggedIn, token, setToken, }) =>
      }
     
     return (
-    <>
+    <section id='mainContainer'>
         <form onSubmit={ (event) => {  
             event.preventDefault();
             handleSubmit(username, password)}}>
@@ -36,7 +36,7 @@ const LogIn = ({user, setUser, isLoggedIn, setIsLoggedIn, token, setToken, }) =>
             />
             <button type='submit' >Log In</button>
         </form>
-    </>
+    </section>
 )
 }
 
