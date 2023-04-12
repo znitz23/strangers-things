@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from 'react'
 import { Posts, LogIn, Profile, Navbar, Welcome, Header } from '.'
 import {Routes, Route} from 'react-router-dom'
@@ -54,14 +53,6 @@ return (
                 setIsLoggedIn={setIsLoggedIn} 
             />}/>
         </Routes>
-=======
-import React from 'react'
-
-const App = ()=> {
-return (
-    <>
-    <h1>'Criagslist Will be header/navbar/login'</h1>;
->>>>>>> main
     </>
 )
 }
