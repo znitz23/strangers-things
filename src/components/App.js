@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Posts, LogIn, Profile, Navbar, Welcome, Header } from '.'
 import {Routes, Route} from 'react-router-dom'
 import './style.css';
+import { getPosts } from '../api';
 
 const App = ()=> {
     const [posts, setPosts] = useState([]);
@@ -9,13 +10,26 @@ const App = ()=> {
     const [token, setToken] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    useEffect(() => {
+            const getInitialData = async () => {
+                const fetchedPosts = await getPosts();
+                setPosts(fetchedPosts);
+            }
+        getInitialData()
+    }, [])
+
 return (
     <>
         <Header />
-        <Navbar />
+        <Navbar 
+        setUser={setUser}
+        setIsLoggedIn={setIsLoggedIn} 
+        setToken={setToken}/>
         <Routes >
             <Route path='/' element={
                 <Welcome 
+                posts={posts}
+                setPosts={setPosts}
                 user={user}
                 isLoggedIn={isLoggedIn}
             />}/>

@@ -1,17 +1,18 @@
 import React from "react";
 
-const Posts = () => {
+const Posts = ({posts, setPosts, isLoggedIn, user}) => {
 return (
-    <>
-    <div id='mainContainer'>Hello from Posts page</div>
-        <ul>
-            <li id='singlePost'>Post 1</li>
-            <li id='singlePost'>Post 2</li>
-            <li id='singlePost'>Post 3</li>
-            <li id='singlePost'>Post 4</li>
-            <li id='singlePost'>Post 5</li>
-        </ul>
-    </>
+    <section id='mainContainer'>
+    {posts.map((post) => {
+        return (
+            <article key={post.author.id} id='singlePost'>            
+                <h2>{post.title}</h2>
+                <p>{post.description}</p>
+                <p>{post.author.username}</p>
+            </article>
+        );
+    })}
+    </section>
 )
 }
 

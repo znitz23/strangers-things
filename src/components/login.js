@@ -1,21 +1,25 @@
 import React, { useState, useNavigate } from "react";
-import { authenticate } from "../api/authentication";
+import { authenticateTestFunc } from "../api";
 
 
 const LogIn = ({user, setUser, isLoggedIn, setIsLoggedIn, token, setToken, }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-     //const navigate = useNavigate()
+    //  const navigate = useNavigate()
     
-    const handleSubmit = async (username, password) => {
+    const handleSubmit = async (event) => {
         //event.preventDefault();
-    console.log(username, password)
-      const data = await authenticate(username, password); 
-      console.log(data);
-        //setToken(authenticate);
+      const userToAuth = {user: {username: username, password: password}};
+      const data = await authenticateTestFunc(userToAuth); 
+
+      if(data.token){
+          setToken(data.token);
+          setUser(username);
+          setIsLoggedIn(true);
+        }
          setUsername('');
          setPassword('');
-         //navigate('/profile');
+        //  navigate('/profile');
      }
     
     return (
