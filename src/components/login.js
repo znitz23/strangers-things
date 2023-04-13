@@ -1,14 +1,15 @@
-import React, { useState, useNavigate } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { authenticateTestFunc } from "../api";
 
 
 const LogIn = ({user, setUser, isLoggedIn, setIsLoggedIn, token, setToken, }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    //  const navigate = useNavigate()
+     const navigate = useNavigate()
     
     const handleSubmit = async (event) => {
-        //event.preventDefault();
+        event.preventDefault();
       const userToAuth = {user: {username: username, password: password}};
       const data = await authenticateTestFunc(userToAuth); 
 
@@ -19,14 +20,12 @@ const LogIn = ({user, setUser, isLoggedIn, setIsLoggedIn, token, setToken, }) =>
         }
          setUsername('');
          setPassword('');
-        //  navigate('/profile');
+          navigate('/profile');
      }
     
     return (
     <section id='mainContainer'>
-        <form onSubmit={ (event) => {  
-            event.preventDefault();
-            handleSubmit(username, password)}}>
+        <form onSubmit={handleSubmit}>
             
             <input 
                 placeholder="Username" 

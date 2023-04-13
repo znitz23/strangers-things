@@ -9,7 +9,35 @@ export const authenticateTestFunc = async (userobject) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({userobject})
+      body: JSON.stringify(userobject)
+    });
+    
+        const {success, error, data} = await response.json();
+        console.log(data)
+        if(success) {
+          const {token, message} = data;
+          localStorage.setItem('token', token);
+          return {token, message};
+        }
+        if (!success && !error){
+          const {name, message} = data;
+          return {name, message};
+        }
+        return;
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export const authenticateNewUser = async (userobject) => {
+   console.log(userobject);
+  try {
+    const response = await fetch(`${APIURL}/users/register`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userobject)
     });
     
         const {success, error, data} = await response.json();
@@ -55,7 +83,7 @@ const registerUser = async (newUsername, newPassword) => {
 export const getPosts = async () => {
     try {
       const response = await fetch(`${APIURL}/posts`)
-      console.log(response);
+      //console.log(response);
       const {success, error, data: {posts}} = await response.json();
       return posts
     } catch (err) {
@@ -63,14 +91,14 @@ export const getPosts = async () => {
     }
   }
 
-  const makePost = async () => {
+ export const makePost = async (post, token) => {
 
     try {
       const response = await fetch(`${APIURL}/posts`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${TOKEN_STRING_HERE}`
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           post: {
@@ -89,16 +117,14 @@ export const getPosts = async () => {
     }
   }
 
-  const updatePost = async () => {
+  const updatePost = async (postId, post, token) => {
     try {
-      // You will need to insert a variable into the fetch template literal 
-      // in order to make the POST_ID dynamic. 
-      // 5e8d1bd48829fb0017d2233b is just for demonstration.
-      const response = await fetch(`${APIURL}/posts/${userId}`, {
+    
+      const response = await fetch(`${APIURL}/posts/${postId}`, {
         method: "PATCH",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${TOKEN_STRING_HERE}`
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           post: {

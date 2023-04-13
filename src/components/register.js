@@ -1,17 +1,25 @@
 import React, { useState } from "react";
+import { authenticateNewUser } from "../api";
 
-const Register = () => {
-    const [newusername, setNewusername] = useState(''); 
-    const [newpassword, setNewpassword] = useState('');
-    const handleSubmit = async (newusername, newpassword) => {
+const register = ({user, setUser, isLoggedIn, setIsLoggedIn, token, setToken, }) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    //  const navigate = useNavigate()
+    
+    const handleSubmit = async (event) => {
         event.preventDefault();
-    console.log(newusername, newpassword)
-      const data = await registerUser(newusername, newpassword); 
-      console.log(data);
-        //setToken(authenticate);
-         setNewusername('');
-         setNewpassword('');
-         //navigate('/profile');
+       
+      const userToRegister = {user: {username: username, password: password}};
+      const data = await authenticateNewUser(userToRegister); 
+        console.log(data.token)
+      if(data.token){
+          setToken(data.token);
+          setUser(username);
+          setIsLoggedIn(true);
+        }
+         setUsername('');
+         setPassword('');
+        //  navigate('/profile');
      }
     
     
@@ -23,23 +31,24 @@ return (
     <>
     <div id='mainContainer'>Please Register</div>
 
-        <form submit={handleSubmit} >
+        <form onSubmit={handleSubmit} >
             
             <input 
                 
                 placeholder="Username" 
-                value={newusername} 
-                onChange={(event) => setNewusername(event.target.value)} 
+                value={username} 
+                onChange={(event) => setUsername(event.target.value)} 
             />
             <input 
                 placeholder="Password" 
-                value={newpassword} 
-                onChange={(event) => setNewpassword(event.target.value)}
+                value={password} 
+                onChange={(event) => setPassword(event.target.value)}
             />
             <button type='submit' >Register</button>
         </form>
     </>
 )
-}
+};
 
-export default Register;
+
+export default register;
