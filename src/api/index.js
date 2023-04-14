@@ -158,11 +158,11 @@ console.log(post, token);
 
   const postMessage = async () => {
     try {
-      const response = await fetch(`${APIURL}/posts/${userId}`, {
+      const response = await fetch(`${APIURL}/posts/${postId}/messages`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${TOKEN_STRING_HERE}`
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           message: {
