@@ -92,7 +92,7 @@ export const getPosts = async () => {
   }
 
  export const makePost = async (post, token) => {
-
+console.log(post, token);
     try {
       const response = await fetch(`${APIURL}/posts`, {
         method: "POST",
@@ -100,8 +100,8 @@ export const getPosts = async () => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({
-          post})
+        body: JSON.stringify(
+          post)
       });
       const result = await response.json();
       console.log(result);
@@ -138,13 +138,14 @@ export const getPosts = async () => {
     }
   }
 
-  const deletePost = async () => {
+ export const deletePost = async (postId, token) => {
+  console.log(token)
     try {
-      const response = await fetch(`${APIURL}/posts/${userId}`, {
+      const response = await fetch(`${APIURL}/posts/${postId}`, {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${TOKEN_STRING_HERE}`
+          'Authorization': `Bearer ${token}`
         }
       });
       const result = await response.json();

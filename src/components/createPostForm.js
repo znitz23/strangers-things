@@ -3,17 +3,20 @@ import { makePost } from "../api";
 import Posts from "./posts";
 
 
-const CreateForm = (user, token, setActive, setPosts, posts) => {
+const CreateForm = ({user, token, setActive, setPosts, posts}) => {
 const [newTitle, setNewTitle] = useState('')
 const [newDescription, setNewDescription] = useState('')
+const [newPrice, setNewPrice] = useState('')
 
 const handleSubmit = async (event) => {
     event.preventDefault();
-    const newPost = {post: {title: newTitle, description: newDescription, author: {user}}};
-    const postToPost = await makePost(newPost, token);
-    setPosts([postToPost, ...posts])
+    const newPost = {post: {title: newTitle, description: newDescription, price: newPrice}};
+    const {data} = await makePost(newPost, token);
+    console.log(data);
+    setPosts([data.post, ...posts])
     setNewTitle('')
     setNewDescription('')
+    setNewPrice('')
     setActive(false)
 
 }
@@ -31,6 +34,12 @@ const handleSubmit = async (event) => {
                 placeholder="Description" 
                 value={newDescription}
                 onChange={(event) => setNewDescription(event.target.value)}>
+            </input>
+            <input 
+                type="text" 
+                placeholder="Price" 
+                value={newPrice}
+                onChange={(event) => setNewPrice(event.target.value)}>
             </input>
             <button type="submit">Submit</button>
         </form>
