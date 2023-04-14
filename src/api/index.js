@@ -156,9 +156,12 @@ console.log(post, token);
     }
   }
 
-  const postMessage = async () => {
+  const postMessage = async (content) => {
     try {
-      const response = await fetch(`${APIURL}/posts/${postId}/messages`, {
+     
+
+      const response = await fetch(`${APIURL}/posts/${postid}/messages`, {
+
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -166,7 +169,7 @@ console.log(post, token);
         },
         body: JSON.stringify({
           message: {
-            content: ""
+            content
           }
         })
       });

@@ -7,13 +7,18 @@ import { getPosts } from '../api';
 const App = ()=> {
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
-    const [token, setToken] = useState('');
+    const [token, setToken] = useState(localStorage.token);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+console.log(localStorage)
 
     useEffect(() => {
             const getInitialData = async () => {
                 const fetchedPosts = await getPosts();
                 setPosts(fetchedPosts);
+                if(token){
+                setIsLoggedIn(true)
+                }
             }
         getInitialData()
     }, [])

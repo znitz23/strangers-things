@@ -3,9 +3,16 @@ import { makePost } from "../api";
 import CreateForm from "./createPostForm";
 import { deletePost } from "../api";
 import SearchBar from "./search";
+import CreateMessageForm from "./createMessageForm";
 
 const Posts = ({posts, setPosts, isLoggedIn, user, token}) => {
-    const [active, setActive] = useState(false);
+    const [createPostFormActive, setCreatePostFormActive] = useState(false);
+    const [createMessageFormActive, setMessagePostFormActive] = useState(false);
+
+    const handleMessage = async (event) => {
+        event.preventDefault();
+        setMessagePostFormActive(true)
+    }
     const handleDelete = async (event) => {
     const postId = event.target.value;
         const {success} = await deletePost(postId, token);
@@ -15,7 +22,7 @@ const Posts = ({posts, setPosts, isLoggedIn, user, token}) => {
     }
     const handleSubmit = (event) => {
     event.preventDefault()
-    setActive(true) 
+    setCreatePostFormActive(true) 
    }
 return (
     <>
@@ -27,7 +34,7 @@ return (
         <button 
         onClick={ handleSubmit }
         >Create New Post</button> 
-        {active ? (<CreateForm token={token} user={user} setActive={setActive} setPosts={setPosts} posts={posts}/>) : (null)}
+        {createPostFormActive ? (<CreateForm token={token} user={user} setActive={setActive} setPosts={setPosts} posts={posts}/>) : (null)}
     {posts.map((post) => {
         console.log
         return (
@@ -40,7 +47,10 @@ return (
                 (
                     <button onClick={handleDelete} value={post._id}>Delete Post</button>
                 ) : (
-                   <></>
+                    <>
+                        <button onClick={handleMessage} value={post._id}>Send Message</button>
+                        {createMessageFormActive ? (<CreateMessageForm />) : (null)}
+                    </>
                 )}
                 </>
             </article>
