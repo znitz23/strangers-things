@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { makePost } from "../api";
-import CreateForm from "./form";
+import CreateForm from "./createPostForm";
 
-const Posts = ({posts, setPosts, isLoggedIn, user}) => {
+const Posts = ({posts, setPosts, isLoggedIn, user, token}) => {
     const [active, setActive] = useState(false);
     const handleSubmit = (event) => {
     event.preventDefault()
@@ -13,17 +13,25 @@ return (
             {isLoggedIn ? (
                 
     <section > 
-        <h1>Hello, USER!</h1>
-        <button>Create New Post</button>
-        <button>Update PUT Post</button>
-        <button>Update PATCH</button>
-        <button>Delete Post</button>
+        <h1>Hello, {user}!</h1>
+        <button 
+        onClick={ handleSubmit }
+        >Create New Post</button> 
+        {active ? (<CreateForm token={token} user={user} setActive={setActive} setPosts={setPosts} posts={posts}/>) : (null)}
     {posts.map((post) => {
         return (
             <article key={post.author.id} id='singlePost'>            
                 <h2>{post.title}</h2>
                 <p>{post.description}</p>
                 <p>{post.author.username}</p>
+                <>
+                {post.author.username === {user} ?
+                (
+                    <button>Delete Post</button>
+                ) : (
+                   <></>
+                )}
+                </>
             </article>
         );
     })}
@@ -31,14 +39,6 @@ return (
             ) : (
                 <section > 
         <h1>Hello, UNAUTHENTICATED USER!</h1>
-        <button 
-        onClick={ handleSubmit }
-         
-        >Create New Post</button> 
-        {active ? (<CreateForm/>) : (null)}
-        <button>Update PUT Post</button>
-        <button>Update PATCH</button>
-        <button>Delete Post</button>
     {posts.map((post) => {
         return (
             <article key={post.author.id} id='singlePost'>            

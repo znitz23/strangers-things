@@ -1,7 +1,7 @@
 const cohortName = '2303-FTB-ET-WEB-FT'
 const APIURL = `https://strangers-things.herokuapp.com/api/${cohortName}`;
 
-export const authenticateTestFunc = async (userobject) => {
+export const authenticateUser = async (userobject) => {
   // console.log(userobject);
   try {
     const response = await fetch(`${APIURL}/users/login`, {
@@ -101,13 +101,7 @@ export const getPosts = async () => {
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          post: {
-            title: " ",
-            description: " ",
-            price: " ",
-            willDeliver: true
-          }
-        })
+          post})
       });
       const result = await response.json();
       console.log(result);

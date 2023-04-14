@@ -30,12 +30,8 @@ return (
                 <Welcome 
                 posts={posts}
                 setPosts={setPosts}
-                user={user} 
-                setUser={setUser}
+                user={user}
                 isLoggedIn={isLoggedIn}
-                setIsLoggedIn={setIsLoggedIn} 
-                setToken={setToken}
-                token={token}
             />}/>
             <Route 
                 path='/login' 
@@ -58,6 +54,7 @@ return (
                 setUser={setUser}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
+                token={token}
             />}/>
             <Route
                 path='/profile' 

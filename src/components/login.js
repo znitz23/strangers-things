@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { authenticateTestFunc } from "../api";
+import { authenticateUser } from "../api";
 
 
 const LogIn = ({user, setUser, isLoggedIn, setIsLoggedIn, token, setToken, }) => {
@@ -11,7 +11,7 @@ const LogIn = ({user, setUser, isLoggedIn, setIsLoggedIn, token, setToken, }) =>
     const handleSubmit = async (event) => {
         event.preventDefault();
       const userToAuth = {user: {username: username, password: password}};
-      const data = await authenticateTestFunc(userToAuth); 
+      const data = await authenticateUser(userToAuth); 
 
       if(data.token){
           setToken(data.token);

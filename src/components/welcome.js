@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Register from "./register";
 import Posts from "./posts";
+import CreateForm from "./createPostForm";
 
 const Welcome = ({ isLoggedIn, posts, setPosts, setIsLoggedIn, setToken, token, user, setUser}) => {
     const [active, setActive] = useState(false);
@@ -15,11 +16,12 @@ return (
             {isLoggedIn ? (
                 
     <section > 
-        <h1>Hello, USER!</h1>
-        <button>Create New Post</button>
-        <button>Update PUT Post</button>
-        <button>Update PATCH</button>
-        <button>Delete Post</button>
+        <h1>Welcome back {user}!</h1>
+        {/* <button 
+        onClick={ handleSubmit }
+         
+        >Create New Post</button>  */}
+        {active ? (<CreateForm/>) : (null)}
     {posts.map((post) => {
         return (
             <article key={post.author.id} id='singlePost'>            
@@ -33,14 +35,6 @@ return (
             ) : (
                 <section > 
         <h1>Hello, UNAUTHENTICATED USER!</h1>
-        <button 
-        onClick={ handleSubmit }
-         
-        >Create New Post</button> 
-        {active ? (<CreateForm/>) : (null)}
-        <button>Update PUT Post</button>
-        <button>Update PATCH</button>
-        <button>Delete Post</button>
     {posts.map((post) => {
         return (
             <article key={post.author.id} id='singlePost'>            
