@@ -17,7 +17,7 @@ const handleSubmit = async (event) => {
     setNewTitle('')
     setNewDescription('')
     setNewPrice('')
-    setActive(false)
+    setCreatePostFormActive(false)
 
 }
 
