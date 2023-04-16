@@ -10,7 +10,6 @@ import CreateMessageForm from "./createMessageForm";
 const Posts = ({posts, setPosts, isLoggedIn, user, token}) => {
     const [createPostFormActive, setCreatePostFormActive] = useState(false);
     const [createMessageFormActive, setMessagePostFormActive] = useState(false);
-    const [allPosts] = useState([]);
 
     const handleMessage = async (event) => {
         event.preventDefault();
@@ -30,7 +29,7 @@ const Posts = ({posts, setPosts, isLoggedIn, user, token}) => {
    }
 return (
     <>
-            <SearchBar allPosts={allPosts}/>
+            <SearchBar setPosts={setPosts} posts={posts}/>
             {isLoggedIn ? (
                 
     <section > 

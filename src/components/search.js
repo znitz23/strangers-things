@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 
-const SearchBar = ({ allPosts }) => {
-  const [posts, setPosts] = useState([]);
+const SearchBar = (posts, setPosts) => {
   const [search, setSearch] = useState('');
 
-  const searchChange = (event) => {
-    setSearch(event.target.value);
-  };
 
   const searchSubmit = (event) => {
     event.preventDefault();
-    if (allPosts) {
-      const filteredPosts = allPosts.filter((post) =>
-        post.toLowerCase().includes(search.toLowerCase())
-      );
-      setPosts(filteredPosts);
-    }
-  };
+    const searchUsers = (posts, search) =>
+    {posts.filter((post) =>
+      post.title.toLowerCase().includes(search.toLowerCase())
+    );
+}
+    const returnedPosts = searchUsers(posts,search);
+    console.log(returnedPosts);
+    setPosts(returnedPosts);
+};
+
 
   return (
     <form onSubmit={searchSubmit}>
@@ -25,14 +24,10 @@ const SearchBar = ({ allPosts }) => {
         name="search"
         placeholder="Search"
         value={search}
-        onChange={searchChange}
+        onChange={(event) =>setSearch(event.target.value)}
       />
       <button type="submit">Search</button>
-      {posts.map((post) => (
-        <div key={post._id}>{post.name}</div>
-      ))}
     </form>
   );
-};
-
+}
 export default SearchBar;
