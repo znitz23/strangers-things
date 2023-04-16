@@ -27,6 +27,7 @@ return (
             <article key={post._id} id='singlePost'>            
                 <h2>{post.title}</h2>
                 <p>{post.description}</p>
+                <p>{post.price}</p>
                 <p>{post.author.username}</p>
             </article>
         );
@@ -40,6 +41,7 @@ return (
             <article key={post._id} id='singlePost'>            
                 <h2>{post.title}</h2>
                 <p>{post.description}</p>
+                <p>{post.price}</p>
                 <p>{post.author.username}</p>
             </article>
         );

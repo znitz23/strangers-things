@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-const Navbar = ({setUser, setIsLoggedIn, setToken}) => {
+const Navbar = ({setUser, isLoggedIn, setIsLoggedIn, setToken}) => {
     const handleSubmit = (event) => {
    
         event.preventDefault()
@@ -16,13 +16,15 @@ const Navbar = ({setUser, setIsLoggedIn, setToken}) => {
             <NavLink to="/login" id='navFeature' >LogIn</NavLink>
             <NavLink to="/posts" id='navFeature' >Posts</NavLink>
             <NavLink to="/profile" id='navFeature' >Profile</NavLink>
-            <button 
+            
+            {isLoggedIn ? 
+            (<button 
             onClick={handleSubmit}
             id='navFeature'
-          
-            
-        
-            >Logout</button>
+            >Logout</button>) : (
+                <></>
+            )
+        }
     </nav>
 )
 };

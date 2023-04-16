@@ -3,7 +3,7 @@ import { makePost } from "../api";
 import Posts from "./posts";
 
 
-const CreateForm = ({user, token, setActive, setPosts, posts}) => {
+const CreateForm = ({user, token, setCreatePostFormActive, setPosts, posts}) => {
 const [newTitle, setNewTitle] = useState('')
 const [newDescription, setNewDescription] = useState('')
 const [newPrice, setNewPrice] = useState('')

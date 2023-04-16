@@ -30,7 +30,8 @@ return (
         <Navbar 
         setUser={setUser}
         setIsLoggedIn={setIsLoggedIn} 
-        setToken={setToken}/>
+        setToken={setToken}
+        isLoggedIn={isLoggedIn}/>
         <Routes >
             <Route path='/' element={
                 <Welcome 

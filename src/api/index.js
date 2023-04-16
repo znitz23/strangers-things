@@ -87,7 +87,6 @@ export const getPosts = async () => {
   }
 
  export const makePost = async (post, token) => {
-console.log(post, token);
     try {
       const response = await fetch(`${APIURL}/posts`, {
         method: "POST",
@@ -99,7 +98,6 @@ console.log(post, token);
           post)
       });
       const result = await response.json();
-      console.log(result);
       return result
     } catch (err) {
       console.error(err);
@@ -134,7 +132,6 @@ console.log(post, token);
   }
 
  export const deletePost = async (postId, token) => {
-  console.log(token)
     try {
       const response = await fetch(`${APIURL}/posts/${postId}`, {
         method: "DELETE",
@@ -144,18 +141,17 @@ console.log(post, token);
         }
       });
       const result = await response.json();
-      console.log(result);
       return result
     } catch (err) {
       console.error(err);
     }
   }
 
-  const postMessage = async (content) => {
+  export const postMessage = async (content, postId, token) => {
     try {
      
 
-      const response = await fetch(`${APIURL}/posts/${postid}/messages`, {
+      const response = await fetch(`${APIURL}/posts/${postId}/messages`, {
 
         method: "POST",
         headers: {
