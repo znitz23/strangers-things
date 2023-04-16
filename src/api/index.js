@@ -57,28 +57,23 @@ export const authenticateNewUser = async (userobject) => {
     }
 }
 
-const registerUser = async (newUsername, newPassword) => {
+export const getMe = async (token) => {
   try {
-    const response = await fetch(
-      `${APIURL}/users/register`, {
-      method: "POST",
+    const response = await fetch(`${APIURL}/users/me`, {
+      method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({
-        user: {
-          username: {newUsername},
-          password: {newPassword}
-        } 
-      } ) 
     });
-    const {success, error, data: {token, message}} = await response.json();
-    console.log(success)
-    return;
-  } catch (err) {
-    console.error(err);
+    const { success, error, data } = await response.json();
+    console.log({ success, error, data });
+
+    return { success, error, user: data };
+  } catch (error) {
+    console.error(error);
   }
-}
+};
 
 export const getPosts = async () => {
     try {

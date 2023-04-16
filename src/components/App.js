@@ -3,6 +3,7 @@ import { Posts, LogIn, Profile, Navbar, Welcome, Header } from '.'
 import {Routes, Route} from 'react-router-dom'
 import './style.css';
 import { getPosts } from '../api';
+import { getMe } from '../api';
 
 const App = ()=> {
     const [posts, setPosts] = useState([]);
@@ -10,13 +11,13 @@ const App = ()=> {
     const [token, setToken] = useState(localStorage.token);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-console.log(localStorage)
-
     useEffect(() => {
             const getInitialData = async () => {
                 const fetchedPosts = await getPosts();
                 setPosts(fetchedPosts);
                 if(token){
+                const fetchedUser = await getMe(token);
+                setUser(fetchedUser.user.username);
                 setIsLoggedIn(true)
                 }
             }
