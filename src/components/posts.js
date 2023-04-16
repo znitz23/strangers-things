@@ -5,9 +5,12 @@ import { deletePost } from "../api";
 import SearchBar from "./search";
 import CreateMessageForm from "./createMessageForm";
 
+
+
 const Posts = ({posts, setPosts, isLoggedIn, user, token}) => {
     const [createPostFormActive, setCreatePostFormActive] = useState(false);
     const [createMessageFormActive, setMessagePostFormActive] = useState(false);
+    const [allPosts] = useState([]);
 
     const handleMessage = async (event) => {
         event.preventDefault();
@@ -27,7 +30,7 @@ const Posts = ({posts, setPosts, isLoggedIn, user, token}) => {
    }
 return (
     <>
-            <SearchBar />
+            <SearchBar allPosts={allPosts}/>
             {isLoggedIn ? (
                 
     <section > 
@@ -35,7 +38,7 @@ return (
         <button 
         onClick={ handleSubmit }
         >Create New Post</button> 
-        {createPostFormActive ? (<CreateForm token={token} user={user} setActive={setActive} setPosts={setPosts} posts={posts}/>) : (null)}
+        {createPostFormActive ? (<CreateForm token={token} user={user} createPostFormActive={createPostFormActive} setPosts={setPosts} posts={posts}/>) : (null)}
     {posts.map((post) => {
         console.log
         return (

@@ -5,6 +5,7 @@ import './style.css';
 import { getPosts } from '../api';
 import { getMe } from '../api';
 
+
 const App = ()=> {
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
