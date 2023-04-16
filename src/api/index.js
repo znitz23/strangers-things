@@ -103,6 +103,7 @@ export const getPosts = async () => {
     }
   }
 
+
  export const deletePost = async (postId, token) => {
     try {
       const response = await fetch(`${APIURL}/posts/${postId}`, {
