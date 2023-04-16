@@ -9,8 +9,6 @@ const Posts = ({posts, setPosts, isLoggedIn, user, token}) => {
     const [createPostFormActive, setCreatePostFormActive] = useState(false);
     const [createMessageFormActive, setMessagePostFormActive] = useState(false);
 
-    console.log(posts);
-
     const handleMessage = async (event) => {
         event.preventDefault();
         setMessagePostFormActive(true)
@@ -36,13 +34,13 @@ return (
         <button 
         onClick={ handleSubmit }
         >Create New Post</button> 
-        {createPostFormActive ? (<CreateForm token={token} user={user} setCreatePostFormActive={setCreatePostFormActive} setPosts={setPosts} posts={posts}/>) : (null)}
+        {createPostFormActive ? (<CreateForm token={token} user={user} setActive={setActive} setPosts={setPosts} posts={posts}/>) : (null)}
     {posts.map((post) => {
+        console.log
         return (
             <article key={post._id} id='singlePost'>            
                 <h2>{post.title}</h2>
                 <p>{post.description}</p>
-                <p>{post.price}</p>
                 <p>{post.author.username}</p>
                 <>
                 {post.author.username === user ?
@@ -51,7 +49,7 @@ return (
                 ) : (
                     <>
                         <button onClick={handleMessage} value={post._id}>Send Message</button>
-                        {createMessageFormActive ? (<CreateMessageForm token={token} postId/>) : (null)}
+                        {createMessageFormActive ? (<CreateMessageForm />) : (null)}
                     </>
                 )}
                 </>
@@ -67,7 +65,6 @@ return (
             <article key={post._id} id='singlePost'>            
                 <h2>{post.title}</h2>
                 <p>{post.description}</p>
-                <p>{post.price}</p>
                 <p>{post.author.username}</p>
             </article>
         );

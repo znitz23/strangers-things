@@ -14,15 +14,15 @@ const CreateMessageForm = (token, postId) => {
 
     return (
 
-        <form>
-            <input 
-            type='text'
-            placeholder='Send Message'
-            value={message}
-            onChange={(event) => setMessage(event.target.value)}
-            ></input>
-            <button onSubmit={handleSubmit}>Submit</button>
-        </form>
+        <form onSubmit={handleSubmit}>
+    <input 
+        type='text'
+        placeholder='Send Message'
+        value={message}
+        onChange={(event) => setMessage(event.target.value)}
+    ></input>
+    <button type="submit">Submit</button>
+</form>
 
     )
 }
