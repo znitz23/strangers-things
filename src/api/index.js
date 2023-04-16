@@ -67,7 +67,6 @@ export const getMe = async (token) => {
       },
     });
     const { success, error, data } = await response.json();
-    console.log({ success, error, data });
 
     return { success, error, user: data };
   } catch (error) {
@@ -98,33 +97,6 @@ export const getPosts = async () => {
           post)
       });
       const result = await response.json();
-      return result
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
-  const updatePost = async (postId, post, token) => {
-    try {
-    
-      const response = await fetch(`${APIURL}/posts/${postId}`, {
-        method: "PATCH",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          post: {
-            title: "",
-            description: "",
-            price: "",
-            location: "",
-            willDeliver: true
-          }
-        })
-      });
-      const result = await response.json();
-      console.log(result);
       return result
     } catch (err) {
       console.error(err);

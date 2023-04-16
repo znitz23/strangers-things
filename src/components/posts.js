@@ -9,10 +9,9 @@ const Posts = ({posts, setPosts, isLoggedIn, user, token}) => {
     const [createPostFormActive, setCreatePostFormActive] = useState(false);
     const [createMessageFormActive, setMessagePostFormActive] = useState(false);
 
-    console.log(posts);
-
     const handleMessage = async (event) => {
         event.preventDefault();
+        const postId = event.target.value;
         setMessagePostFormActive(true)
     }
     const handleDelete = async (event) => {
