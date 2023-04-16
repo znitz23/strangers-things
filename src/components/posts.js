@@ -11,6 +11,7 @@ const Posts = ({posts, setPosts, isLoggedIn, user, token}) => {
 
     const handleMessage = async (event) => {
         event.preventDefault();
+        const postId = event.target.value;
         setMessagePostFormActive(true)
     }
     const handleDelete = async (event) => {

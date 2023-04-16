@@ -29,7 +29,6 @@ const register = ({user, setUser, isLoggedIn, setIsLoggedIn, token, setToken, })
 
 return (
     <>
-    <div id='mainContainer'>Please Register</div>
 
         <form onSubmit={handleSubmit} >
             

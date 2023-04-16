@@ -38,7 +38,11 @@ return (
                 posts={posts}
                 setPosts={setPosts}
                 user={user}
+                setUser={setUser}
                 isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                setToken={setToken}
+                token={token}
             />}/>
             <Route 
                 path='/login' 

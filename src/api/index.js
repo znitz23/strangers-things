@@ -67,7 +67,6 @@ export const getMe = async (token) => {
       },
     });
     const { success, error, data } = await response.json();
-    console.log({ success, error, data });
 
     return { success, error, user: data };
   } catch (error) {

@@ -1,13 +1,12 @@
 import React, {useState} from "react";
 import { postMessage } from "../api";
 
-const CreateMessageForm = (token, postId) => {
+const CreateMessageForm = ({token, postId}) => {
     const [message, setMessage] = useState('');
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         const messageContent = {message: {content: message}};
-        console.log(messageContent)
+        console.log(messageContent);
         await postMessage(messageContent, token, postId);
         setMessage('');
     }
@@ -23,6 +22,7 @@ const CreateMessageForm = (token, postId) => {
     ></input>
     <button type="submit">Submit</button>
 </form>
+
 
     )
 }
