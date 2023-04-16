@@ -24,7 +24,7 @@ return (
         {active ? (<CreateForm/>) : (null)}
     {posts.map((post) => {
         return (
-            <article key={post.author.id} id='singlePost'>            
+            <article key={post._id} id='singlePost'>            
                 <h2>{post.title}</h2>
                 <p>{post.description}</p>
                 <p>{post.author.username}</p>
@@ -37,7 +37,7 @@ return (
         <h1>Hello, UNAUTHENTICATED USER!</h1>
     {posts.map((post) => {
         return (
-            <article key={post.author.id} id='singlePost'>            
+            <article key={post._id} id='singlePost'>            
                 <h2>{post.title}</h2>
                 <p>{post.description}</p>
                 <p>{post.author.username}</p>

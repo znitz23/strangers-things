@@ -2,11 +2,12 @@ import React from "react";
 
 const CreateMessageForm = () => {
     return (
-        <>
+
         <form>
-            <input></input>
+            {/* <input placeholder='Send Message'> </input>
+            <button></button> */}
         </form>
-        </>
+
     )
 }
 
